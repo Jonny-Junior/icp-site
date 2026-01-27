@@ -47,39 +47,22 @@ const Home = () => {
         let ctx = gsap.context(() => {
             // Hero Animations
             const tl = gsap.timeline();
-            tl.from(".hero-title", {
+            tl.from(".hero-content", {
                 y: 50,
                 opacity: 0,
-                duration: 1,
+                duration: 1.2,
                 ease: "power4.out"
-            })
-                .from(".hero-text", {
-                    y: 30,
-                    opacity: 0,
-                    duration: 0.8,
-                    ease: "power3.out"
-                }, "-=0.5")
-                .from(".hero-cta", {
-                    scale: 0.8,
-                    opacity: 0,
-                    duration: 0.5,
-                    ease: "back.out(1.7)"
-                }, "-=0.3")
-                .from(".hero-image-reveal", {
-                    clipPath: "inset(100% 0% 0% 0%)",
-                    y: 50,
-                    opacity: 0,
-                    duration: 1.2,
-                    ease: "power2.out"
-                }, "-=0.8");
+            });
 
-            // Floating animation for the image
-            gsap.to(".hero-image-float", {
-                y: -15,
-                duration: 2.5,
-                ease: "sine.inOut",
-                repeat: -1,
-                yoyo: true
+            // Parallax/Zoom effect on scroll for the background
+            gsap.to(".hero-bg", {
+                scale: 1.2,
+                scrollTrigger: {
+                    trigger: ".hero-section",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true
+                }
             });
 
             // Shared section animation
@@ -99,56 +82,47 @@ const Home = () => {
 
     return (
         <div ref={heroRef} className="overflow-x-hidden">
-            {/* Hero Section */}
-            <section className="relative min-h-screen flex items-center pt-20">
-                <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
-                    <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"></div>
+            {/* Full Background Hero Section */}
+            <section className="hero-section relative h-screen w-full flex items-center justify-center overflow-hidden">
+                {/* Background Image with GSAP animation */}
+                <div className="hero-bg absolute inset-0 z-0">
+                    <img
+                        src={heroImage}
+                        alt="ICP Instituto Casa do Pai"
+                        className="w-full h-full object-cover"
+                    />
+                    {/* Darker Overlay for better contrast */}
+                    <div className="absolute inset-0 bg-slate-900/60 transition-all duration-500"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-slate-900/40"></div>
                 </div>
 
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div className="space-y-8">
-                        <h1 className="hero-title text-5xl md:text-7xl font-bold text-institutional-blue leading-tight">
-                            Transformando <span className="text-institutional-orange">Vidas</span> através do Amor.
-                        </h1>
-                        <p className="hero-text text-xl text-slate-600 leading-relaxed max-w-2xl">
-                            O Instituto Casa do Pai é um polo de impacto social dedicado a oferecer educação, cultura e apoio para comunidades em situação de vulnerabilidade.
-                        </p>
-                        <div className="hero-cta flex flex-wrap gap-4">
-                            <Link to="/doar" className="bg-institutional-orange text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-600 transition-all shadow-xl shadow-orange-200">
-                                Quero Ajudar
-                            </Link>
-                            <Link to="/quem-somos" className="bg-white text-institutional-blue border-2 border-institutional-blue px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-50 transition-all">
-                                Conheça nossa História
-                            </Link>
-                        </div>
+                <div className="hero-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white space-y-8">
+                    <h1 className="text-5xl md:text-8xl font-bold leading-tight">
+                        Transformando <span className="text-institutional-orange">Vidas</span> <br className="hidden md:block" /> através do Amor.
+                    </h1>
+                    <p className="text-xl md:text-2xl text-slate-200 leading-relaxed max-w-3xl mx-auto">
+                        O Instituto Casa do Pai é um polo de impacto social dedicado a oferecer educação, cultura e apoio para comunidades em situação de vulnerabilidade.
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-6">
+                        <Link to="/doar" className="bg-institutional-orange text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-orange-600 transition-all hover:scale-105 shadow-2xl shadow-orange-500/30">
+                            Quero Ajudar
+                        </Link>
+                        <Link to="/quem-somos" className="bg-white/10 backdrop-blur-md text-white border-2 border-white/30 px-10 py-5 rounded-full font-bold text-lg hover:bg-white/20 transition-all hover:scale-105">
+                            Conheça nossa História
+                        </Link>
                     </div>
+                </div>
 
-                    <div className="relative hero-image-reveal">
-                        <div className="aspect-square bg-slate-200 rounded-[3rem] overflow-hidden shadow-2xl relative hero-image-float">
-                            <div className="absolute inset-0 bg-gradient-to-br from-institutional-blue/10 to-transparent"></div>
-                            <img
-                                src={heroImage}
-                                alt="Impacto Social"
-                                className="w-full h-full object-cover scale-105"
-                            />
-                        </div>
-                        <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-slate-100">
-                            <div className="flex items-center space-x-4">
-                                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                                    <Heart className="w-6 h-6 fill-current" />
-                                </div>
-                                <div>
-                                    <p className="text-sm font-bold text-slate-800">+500 Famílias</p>
-                                    <p className="text-xs text-slate-500">Atendidas mensalmente</p>
-                                </div>
-                            </div>
-                        </div>
+                {/* Scroll Indicator */}
+                <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hero-content">
+                    <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-1">
+                        <div className="w-1 h-2 bg-white rounded-full animate-bounce"></div>
                     </div>
                 </div>
             </section>
 
             {/* Numbers Section */}
-            <section className="py-24 bg-slate-50">
+            <section className="py-24 bg-slate-50 relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.1)] rounded-t-[3rem] -mt-10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="section-title text-3xl md:text-5xl font-bold text-institutional-blue mb-4">
@@ -167,7 +141,7 @@ const Home = () => {
             </section>
 
             {/* Video Section */}
-            <section className="py-24 bg-white">
+            <section className="py-24 bg-white relative z-20">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12 section-title">
                         <h2 className="text-3xl md:text-5xl font-bold text-institutional-blue mb-4">
@@ -213,7 +187,7 @@ const Home = () => {
             </section>
 
             {/* Actions Summary */}
-            <section className="py-24 bg-white">
+            <section className="py-24 bg-white relative z-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                         <div className="space-y-6 section-title">
