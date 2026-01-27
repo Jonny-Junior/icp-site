@@ -1,7 +1,7 @@
 import QuemSomos from './QuemSomos';
 import Educacao from './Educacao';
 import Esportes from './Esportes';
-import Culinaria from './Culinaria';
+import Castracao from './Castracao';
 import ApoioPsicologico from './ApoioPsicologico';
 import Cursos from './Cursos';
 import Transparencia from './Transparencia';
@@ -12,7 +12,7 @@ import Parceiros from './Parceiros';
 import Contato from './Contato';
 
 export {
-    QuemSomos, Educacao, Esportes, Culinaria,
+    QuemSomos, Educacao, Esportes, Castracao,
     ApoioPsicologico, Cursos, Transparencia,
     Doar, Eventos, Editais, Parceiros, Contato
 };

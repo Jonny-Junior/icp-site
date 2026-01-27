@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import {
-  QuemSomos, Educacao, Esportes, Culinaria,
+  QuemSomos, Educacao, Esportes, Castracao,
   ApoioPsicologico, Cursos, Transparencia,
   Doar, Eventos, Editais, Parceiros, Contato
 } from './pages';
@@ -31,7 +31,7 @@ function App() {
             <Route path="/quem-somos" element={<QuemSomos />} />
             <Route path="/educacao" element={<Educacao />} />
             <Route path="/esportes" element={<Esportes />} />
-            <Route path="/culinaria" element={<Culinaria />} />
+            <Route path="/castracao" element={<Castracao />} />
             <Route path="/apoio-psicologico" element={<ApoioPsicologico />} />
             <Route path="/cursos" element={<Cursos />} />
             <Route path="/transparencia" element={<Transparencia />} />

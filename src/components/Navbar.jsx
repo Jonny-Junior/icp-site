@@ -36,7 +36,7 @@ const Navbar = () => {
         { name: 'Quem Somos', path: '/quem-somos' },
         { name: 'Educação', path: '/educacao' },
         { name: 'Esportes', path: '/esportes' },
-        { name: 'Culinária Social', path: '/culinaria' },
+        { name: 'Castração', path: '/castracao' },
         { name: 'Apoio Psicológico', path: '/apoio-psicologico' },
         { name: 'Cursos Profissionalizantes', path: '/cursos' },
         { name: 'Transparência', path: '/transparencia' },
