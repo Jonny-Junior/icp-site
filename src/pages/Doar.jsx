@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Template from './Template';
-import imgEdu from '../assets/edu.png';
-import imgSport from '../assets/sport.png';
-import imgAnimal from '../assets/animal.png';
-import qrMensal from '../assets/qr-mensal.png';
+// import imgEdu from '../assets/edu.png';
+// import imgSport from '../assets/sport.png';
+// import imgAnimal from '../assets/animal.png';
+import qrMensal from '../assets/qrcode.png';
 import collageAtividades from '../assets/collage-atividades.png';
 
 const Doar = () => {
